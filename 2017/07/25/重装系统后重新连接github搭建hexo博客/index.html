@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>重装系统后重新连接github搭建hexo博客 | Cwx2810&#39;s blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="虽然过程不难，但系统突然崩溃，这些琐碎的步骤实践起来也颇费功夫，故在此记录，将来恢复会更加快速。 1.更改host由于天朝坑爹的闭关锁国，要给gitbush单独设置代理，配置地址参见以前的文章。 2.安装git、nodejs、markdown、sublimetext这些都是必要的环境、编辑工具。 3.生成新的ssh1ssh-keygen -t rsa -C &amp;quot;youremail@exam">
+<meta property="og:type" content="article">
+<meta property="og:title" content="重装系统后重新连接github搭建hexo博客">
+<meta property="og:url" content="http://yoursite.com/2017/07/25/重装系统后重新连接github搭建hexo博客/index.html">
+<meta property="og:site_name" content="Cwx2810&#39;s blog">
+<meta property="og:description" content="虽然过程不难，但系统突然崩溃，这些琐碎的步骤实践起来也颇费功夫，故在此记录，将来恢复会更加快速。 1.更改host由于天朝坑爹的闭关锁国，要给gitbush单独设置代理，配置地址参见以前的文章。 2.安装git、nodejs、markdown、sublimetext这些都是必要的环境、编辑工具。 3.生成新的ssh1ssh-keygen -t rsa -C &amp;quot;youremail@exam">
+<meta property="og:updated_time" content="2017-07-25T16:02:55.756Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="重装系统后重新连接github搭建hexo博客">
+<meta name="twitter:description" content="虽然过程不难，但系统突然崩溃，这些琐碎的步骤实践起来也颇费功夫，故在此记录，将来恢复会更加快速。 1.更改host由于天朝坑爹的闭关锁国，要给gitbush单独设置代理，配置地址参见以前的文章。 2.安装git、nodejs、markdown、sublimetext这些都是必要的环境、编辑工具。 3.生成新的ssh1ssh-keygen -t rsa -C &amp;quot;youremail@exam">
+  
+    <link rel="alternate" href="/atom.xml" title="Cwx2810&#39;s blog" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Cwx2810&#39;s blog</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-重装系统后重新连接github搭建hexo博客" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/07/25/重装系统后重新连接github搭建hexo博客/" class="article-date">
+  <time datetime="2017-07-25T15:37:34.000Z" itemprop="datePublished">2017-07-25</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/hexo/">hexo</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      重装系统后重新连接github搭建hexo博客
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>虽然过程不难，但系统突然崩溃，这些琐碎的步骤实践起来也颇费功夫，故在此记录，将来恢复会更加快速。</p>
+<h3 id="1-更改host"><a href="#1-更改host" class="headerlink" title="1.更改host"></a>1.更改host</h3><p>由于天朝坑爹的闭关锁国，要给gitbush单独设置代理，配置地址参见以前的文章。</p>
+<h3 id="2-安装git、nodejs、markdown、sublimetext"><a href="#2-安装git、nodejs、markdown、sublimetext" class="headerlink" title="2.安装git、nodejs、markdown、sublimetext"></a>2.安装git、nodejs、markdown、sublimetext</h3><p>这些都是必要的环境、编辑工具。</p>
+<h3 id="3-生成新的ssh"><a href="#3-生成新的ssh" class="headerlink" title="3.生成新的ssh"></a>3.生成新的ssh</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">ssh-keygen -t rsa -C &quot;youremail@example.com&quot;</div></pre></td></tr></table></figure>
+<p>重装系统，以前匹配github的ssh已不在，要重新配置，前面是生成ssh，后面的email是设置全局用户名，这里不输入email后期提交还要输入，一路回车就行，具体步骤也在之前的文章提及。</p>
+<h3 id="4-安装hexo"><a href="#4-安装hexo" class="headerlink" title="4.安装hexo"></a>4.安装hexo</h3><p>从这步开始正式进入搭建博客，讲github上或者存储介质中备份的老博客clone下来单独放在一边，在磁盘中建立新的博客文件夹，右键git bush：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ npm install -g hexo</div></pre></td></tr></table></figure></p>
+<p>安装hexo博客系统，这里可能由于版本等各种蜜汁原因警告或报错，不用理会。</p>
+<h3 id="5-拷贝旧的文件"><a href="#5-拷贝旧的文件" class="headerlink" title="5.拷贝旧的文件"></a>5.拷贝旧的文件</h3><p>其实这步就相当于以前的初始化hexo博客，只不过现在有旧博客就不用重新初始化再改配置文件了，除非以前的博客也灰飞烟灭只剩文章，那样就直接建新的博客了。<br>具体要拷贝的文件是配置、主题、文章，scaffolds、package、gitignore，前三个必须考，后三个其实是init操作生成的。其他文件都不用考，都是后续操作会生成的文件。</p>
+<h3 id="6-安装模块、组件"><a href="#6-安装模块、组件" class="headerlink" title="6.安装模块、组件"></a>6.安装模块、组件</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ npm install</div><div class="line">$ npm install hexo-deployer-git --save</div></pre></td></tr></table></figure>
+<p>若有主题要配置，还要安装渲染器，安装方法之前文章有提及。<br>之后执行<code>hexo g</code>、<code>hexo d</code>即可成功部署。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2017/07/25/重装系统后重新连接github搭建hexo博客/" data-id="cj5jru09n000duoqumeoxn8c2" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2017/04/27/详解BootLoader加载/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">详解BootLoader加载</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/hexo/">hexo</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/java/">java</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/linux/">linux</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/os/">os</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/07/">July 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/04/">April 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/12/">December 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/03/">March 2015</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2017/07/25/重装系统后重新连接github搭建hexo博客/">重装系统后重新连接github搭建hexo博客</a>
+          </li>
+        
+          <li>
+            <a href="/2017/04/27/详解BootLoader加载/">详解BootLoader加载</a>
+          </li>
+        
+          <li>
+            <a href="/2017/04/25/virtualbox虚拟ubuntu共享文件/">virtualbox虚拟ubuntu共享文件</a>
+          </li>
+        
+          <li>
+            <a href="/2017/04/24/Hexo更换Maupassant主题/">Hexo更换Maupassant主题</a>
+          </li>
+        
+          <li>
+            <a href="/2017/04/24/ssh-connect-to-host-github-com-port-22-Connection-timed-out/">ssh-connect to host github.com port 22-Connection timed out</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2017 cwx2810<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+  </div>
+</body>
+</html>
