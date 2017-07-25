@@ -1,11 +1,536 @@
-<!DOCTYPE html><html lang="null"><head><meta http-equiv="content-type" content="text/html; charset=utf-8"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black-translucent" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="description"><title>Cwx2810's blog</title><link rel="stylesheet" type="text/css" href="/css/style.css?v=0.0.0"><link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/normalize/6.0.0/normalize.min.css"><link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/pure/0.6.2/pure-min.css"><link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/pure/0.6.2/grids-responsive-min.css"><link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css"><script type="text/javascript" src="//cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script><link rel="Shortcut Icon" type="image/x-icon" href="/favicon.ico"><link rel="apple-touch-icon" href="/apple-touch-icon.png"><link rel="apple-touch-icon-precomposed" href="/apple-touch-icon.png"></head><body><div class="body_container"><div id="header"><div class="site-name"><h1 class="hidden">Cwx2810's blog</h1><a id="logo" href="/.">Cwx2810's blog</a><p class="description"></p></div><div id="nav-menu"><a href="/." class="current"><i class="fa fa-home"> 首页</i></a><a href="/archives/"><i class="fa fa-archive"> 归档</i></a><a href="/about/"><i class="fa fa-user"> 关于</i></a></div></div><div id="layout" class="pure-g"><div class="pure-u-1 pure-u-md-3-4"><div class="content_container"><div class="post"><h1 class="post-title"><a href="/2017/04/27/详解BootLoader加载/">详解BootLoader加载</a></h1><div class="post-meta">2017-04-27</div><a data-disqus-identifier="2017/04/27/详解BootLoader加载/" href="/2017/04/27/详解BootLoader加载/#disqus_thread" class="disqus-comment-count"></a><div class="post-content"><h2 id="1-加电转入BIOS控制"><a href="#1-加电转入BIOS控制" class="headerlink" title="1.加电转入BIOS控制"></a>1.加电转入BIOS控制</h2><p>cpu加电后，转入0xFFFFFFF0这一地址，此地址存放的是跳转指令<code>jmpF000:E05B</code>，跳转到BIOS起始点。<br>输入如下命令启动一个stop的qemu模拟器。</p></div><p class="readmore"><a href="/2017/04/27/详解BootLoader加载/">阅读更多</a></p></div><div class="post"><h1 class="post-title"><a href="/2017/04/25/virtualbox虚拟ubuntu共享文件/">virtualbox虚拟ubuntu共享文件</a></h1><div class="post-meta">2017-04-25</div><a data-disqus-identifier="2017/04/25/virtualbox虚拟ubuntu共享文件/" href="/2017/04/25/virtualbox虚拟ubuntu共享文件/#disqus_thread" class="disqus-comment-count"></a><div class="post-content"><p>最近正在搭建一个小型操作系统内核，免不了要和Linux打交道。<br>我选择在windows虚拟机virtualbox上安装ubuntu14。<br>下面是实现共享文件的步骤。</p>
-<p>#1.安装增强包<br>进入ubuntu系统，点击顶部菜单-设备-安装增强功能，输入root密码后等待安装完成，重启虚拟机。</p></div><p class="readmore"><a href="/2017/04/25/virtualbox虚拟ubuntu共享文件/">阅读更多</a></p></div><div class="post"><h1 class="post-title"><a href="/2017/04/24/Hexo更换Maupassant主题/">Hexo更换Maupassant主题</a></h1><div class="post-meta">2017-04-24</div><a data-disqus-identifier="2017/04/24/Hexo更换Maupassant主题/" href="/2017/04/24/Hexo更换Maupassant主题/#disqus_thread" class="disqus-comment-count"></a><div class="post-content"><p>克隆主题到本地，安装渲染器：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$ git <span class="built_in">clone</span> https://github.com/tufu9441/maupassant-hexo.git themes/maupassant</div><div class="line">$ npm install hexo-renderer-jade --save</div><div class="line">$ npm install hexo-renderer-sass --save</div></pre></td></tr></table></figure></div><p class="readmore"><a href="/2017/04/24/Hexo更换Maupassant主题/">阅读更多</a></p></div><div class="post"><h1 class="post-title"><a href="/2017/04/24/ssh-connect-to-host-github-com-port-22-Connection-timed-out/">ssh-connect to host github.com port 22-Connection timed out</a></h1><div class="post-meta">2017-04-24</div><a data-disqus-identifier="2017/04/24/ssh-connect-to-host-github-com-port-22-Connection-timed-out/" href="/2017/04/24/ssh-connect-to-host-github-com-port-22-Connection-timed-out/#disqus_thread" class="disqus-comment-count"></a><div class="post-content"><p>在上传博客时报错如下：</p>
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Cwx2810&#39;s blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta property="og:type" content="website">
+<meta property="og:title" content="Cwx2810&#39;s blog">
+<meta property="og:url" content="http://yoursite.com/index.html">
+<meta property="og:site_name" content="Cwx2810&#39;s blog">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Cwx2810&#39;s blog">
+  
+    <link rel="alternate" href="/atom.xml" title="Cwx2810&#39;s blog" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Cwx2810&#39;s blog</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main">
+  
+    <article id="post-详解BootLoader加载" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/04/27/详解BootLoader加载/" class="article-date">
+  <time datetime="2017-04-27T11:15:58.000Z" itemprop="datePublished">2017-04-27</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/os/">os</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/04/27/详解BootLoader加载/">详解BootLoader加载</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="1-加电转入BIOS控制"><a href="#1-加电转入BIOS控制" class="headerlink" title="1.加电转入BIOS控制"></a>1.加电转入BIOS控制</h2><p>cpu加电后，转入0xFFFFFFF0这一地址，此地址存放的是跳转指令<code>jmpF000:E05B</code>，跳转到BIOS起始点。<br>输入如下命令启动一个stop的qemu模拟器。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">qemu -S -s -hda bin/ucore.img -monitor stdio</div></pre></td></tr></table></figure>
+<p>输入<code>x /10i $pc</code>反汇编前十条指令，果然第一条就是<code>ljmp</code>长跳转指令。</p>
+<h2 id="2-转入引导扇区"><a href="#2-转入引导扇区" class="headerlink" title="2.转入引导扇区"></a>2.转入引导扇区</h2><p>首先，进行硬件自检，而后读取引导扇区到内存的0x7c00地址，将控制权交于这一地址。引导扇区中存储了BootLoader和硬盘分区信息以及两个标志位。<br>开启另一个terminal进入gdb模拟远程调试：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">gdb</div><div class="line">target remote localhost:1234</div></pre></td></tr></table></figure>
+<p>在0x7c00处设置断点，继续运行：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">b *0x7c00</div><div class="line">c</div></pre></td></tr></table></figure>
+<p>回到qemu模拟器的terminal，输入<code>x /10i $pc</code>反汇编前十条指令，和bootasm.s中的起始代码一致，说明BootLoader确实一开始是加载到0x7c00这一地址的。<br>那么，BootLoader是如何创建的呢？为什么引导扇区中要有标志位？<br>通过<code>make -V</code>命令查看BootLoader加载过程不难发现BootLoader产生过程。</p>
+<h3 id="1-编译kernel"><a href="#1-编译kernel" class="headerlink" title="1.编译kernel"></a>1.编译kernel</h3><p>通过gcc把一系列libs、driver、debug、trap、mm中的.c文件编译成.o目标文件。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">obj/kern/init/init.o </div><div class="line">obj/kern/libs/readline.o </div><div class="line">obj/kern/libs/stdio.o </div><div class="line">obj/kern/debug/kdebug.o </div><div class="line">obj/kern/debug/kmonitor.o </div><div class="line">obj/kern/debug/panic.o </div><div class="line">obj/kern/driver/clock.o </div><div class="line">obj/kern/driver/console.o </div><div class="line">obj/kern/driver/intr.o </div><div class="line">obj/kern/driver/picirq.o </div><div class="line">obj/kern/trap/trap.o </div><div class="line">obj/kern/trap/trapentry.o </div><div class="line">obj/kern/trap/vectors.o </div><div class="line">obj/kern/mm/pmm.o  </div><div class="line">obj/libs/printfmt.o </div><div class="line">obj/libs/string.o</div></pre></td></tr></table></figure>
+<h3 id="2-编译bootblock"><a href="#2-编译bootblock" class="headerlink" title="2.编译bootblock"></a>2.编译bootblock</h3><p>通过编译bootasm、bootmain、sign生成目标文件，通过ld将bootasm、bootmain、bootblock的目标文件编译成可执行文件bootblock.out。</p>
+<h3 id="3-编译BootLoader"><a href="#3-编译BootLoader" class="headerlink" title="3.编译BootLoader"></a>3.编译BootLoader</h3><p>通过dd把kernel和可执行文件.out编译成.img系统镜像文件加载到主引导扇区。</p>
+<h3 id="4-关于主引导扇区"><a href="#4-关于主引导扇区" class="headerlink" title="4.关于主引导扇区"></a>4.关于主引导扇区</h3><p>主引导扇区为512byte，通过sign文件生成，打开sign.c可以看到，<code>char buf[512];</code>定义了大小，<code>buf[510]=0x55;</code>、<code>buf[511]=0xAA</code>定义了最后两位，有了这两个标志位，才能最终输出<code>build 512 bytes boot sector success!</code>，即成功建立主引导扇区。</p>
+<h2 id="3-实模式切换保护模式"><a href="#3-实模式切换保护模式" class="headerlink" title="3.实模式切换保护模式"></a>3.实模式切换保护模式</h2><p>实模式：这种模式软件访问物理内存空间不能超过1M，无法发挥80386cpu的4GB以上内存管理能力，而且此时软件和操作系统都直接通过指针访问物理地址，他们没有区别，如果不小心修改了操作系统后果显然是灾难性的。<br>保护模式：顾名思义就是对操作系统进行保护，通过段机制实现线性地址隔离用户程序对操作系统进行保护。</p>
+<h3 id="1-将中断标志位置0，不允许中断，段寄存器也置0。"><a href="#1-将中断标志位置0，不允许中断，段寄存器也置0。" class="headerlink" title="1.将中断标志位置0，不允许中断，段寄存器也置0。"></a>1.将中断标志位置0，不允许中断，段寄存器也置0。</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">cli               # Disable interrupts</div><div class="line">cld               # String operations increment</div><div class="line">xorw %ax, %ax     # Segment number zero</div><div class="line">movw %ax, %ds     # -&gt; Data Segment</div><div class="line">movw %ax, %es     # -&gt; Extra Segment</div><div class="line">movw %ax, %ss     # -&gt; Stack Segment</div></pre></td></tr></table></figure>
+<h3 id="2-要通过把A20地址从0改为1，使全部32条地址线可用，使得可以访问4G空间。"><a href="#2-要通过把A20地址从0改为1，使全部32条地址线可用，使得可以访问4G空间。" class="headerlink" title="2.要通过把A20地址从0改为1，使全部32条地址线可用，使得可以访问4G空间。"></a>2.要通过把A20地址从0改为1，使全部32条地址线可用，使得可以访问4G空间。</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">seta20.1:</div><div class="line">    inb $0x64, %al    # 读取状态寄存器,等待8042键盘控制器闲置</div><div class="line">    testb $0x2, %al   # 判断输入缓存是否为空</div><div class="line">    jnz seta20.1</div><div class="line"></div><div class="line">    movb $0xd1, %al    # 0xd1表示写输出端口命令，参数随后通过0x60端口写入</div><div class="line">    outb %al, $0x64   </div><div class="line"></div><div class="line">seta20.2:</div><div class="line">    inb $0x64, %al    </div><div class="line">    testb $0x2, %al</div><div class="line">    jnz seta20.2</div><div class="line"></div><div class="line">    movb $0xdf, %al   # 通过0x60写入数据11011111 即将A20置1</div><div class="line">    outb %al, $0x60</div></pre></td></tr></table></figure>
+<h3 id="3-通过建立GDT完成逻辑地址到线性地址的映射。"><a href="#3-通过建立GDT完成逻辑地址到线性地址的映射。" class="headerlink" title="3.通过建立GDT完成逻辑地址到线性地址的映射。"></a>3.通过建立GDT完成逻辑地址到线性地址的映射。</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">lgdt gdtdesc</div></pre></td></tr></table></figure>
+<h3 id="4-置cr0的PE位为1，长跳转使能保护模式。"><a href="#4-置cr0的PE位为1，长跳转使能保护模式。" class="headerlink" title="4.置cr0的PE位为1，长跳转使能保护模式。"></a>4.置cr0的PE位为1，长跳转使能保护模式。</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">movl %cr0, %eax</div><div class="line">orl $CR0_PE_ON, %eax</div><div class="line">movl %eax, %cr0</div><div class="line">ljmp $PROT_MODE_CSEG, $protcseg</div></pre></td></tr></table></figure>
+<h3 id="5-重新设置段寄存器和堆栈。"><a href="#5-重新设置段寄存器和堆栈。" class="headerlink" title="5.重新设置段寄存器和堆栈。"></a>5.重新设置段寄存器和堆栈。</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">movw $PROT_MODE_DSEG, %ax   # Our data segment selector</div><div class="line">movw %ax, %ds     # -&gt; DS: Data Segment</div><div class="line">movw %ax, %es     # -&gt; ES: Extra Segment</div><div class="line">movw %ax, %fs     # -&gt; FS</div><div class="line">movw %ax, %gs     # -&gt; GS</div><div class="line">movw %ax, %ss     # -&gt; SS: Stack Segment</div></pre></td></tr></table></figure>
+<p>这些均在bootasm.s中实现。</p>
+<h2 id="4-开启分段机制"><a href="#4-开启分段机制" class="headerlink" title="4.开启分段机制"></a>4.开启分段机制</h2><p>进行分段的目的就是保护操作系统，使用户程序不能直接访问物理地址，那么就要新增加一个线性地址，并且将逻辑地址转换为线性地址，线性地址最终转换为物理地址。<br>要将逻辑地址转换为线性地址，首先要知道他们的构成。<br>逻辑地址：selector+offset<br>线性地址：段描述符+offset<br>转换时，逻辑地址以selector为index在gdt表中找到段描述符，从而完成转换。<br>段描述符：BaseAddress+Limit+Attributes，其中Attributes中又包含了重要的DPL（段描述符权限）。此外属性中还有G（Granularity粒度），G=0时Limit用字节为单位，G=1时Limit用4k为单位。<br>Selector：包含RPL请求权限。还包含Table Indicator（表的指示位），TI=0表示用GDT表，TI=1表示用LDT表。<br>CPL（当前权限）在cs代码段中。</p>
+<h2 id="5-读取elf格式的系统镜像（BootLoader）到内存"><a href="#5-读取elf格式的系统镜像（BootLoader）到内存" class="headerlink" title="5.读取elf格式的系统镜像（BootLoader）到内存"></a>5.读取elf格式的系统镜像（BootLoader）到内存</h2><h3 id="1-读取扇区"><a href="#1-读取扇区" class="headerlink" title="1.读取扇区"></a>1.读取扇区</h3><p>通过bootmain中的readsect函数调用内联汇编读取扇区。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">readsect(void *dst, uint32_t secno) &#123;</div><div class="line">    waitdisk(); // 等待硬盘就绪</div><div class="line">    // 写地址0x1f2~0x1f5,0x1f7,发出读取磁盘的命令</div><div class="line">    outb(0x1F2, 1);</div><div class="line">    outb(0x1F3, secno &amp; 0xFF);</div><div class="line">    outb(0x1F4, (secno &gt;&gt; 8) &amp; 0xFF);</div><div class="line">    outb(0x1F5, (secno &gt;&gt; 16) &amp; 0xFF);</div><div class="line">    outb(0x1F6, ((secno &gt;&gt; 24) &amp; 0xF) | 0xE0);</div><div class="line">    outb(0x1F7, 0x20);</div><div class="line">    waitdisk();</div><div class="line">    insl(0x1F0, dst, SECTSIZE / 4);//读取一个扇区</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="2-加载系统镜像"><a href="#2-加载系统镜像" class="headerlink" title="2.加载系统镜像"></a>2.加载系统镜像</h3><p>通过bootmain的readseg函数判断elf的值是不是等于e_magic，就是判断读取的是不是elf文件，而后通过ELF系统镜像文件中的elfhdr和proghdr两个头部描述文件，就可以加载img到内存。<br>eflhdr描述了总的文件信息，proghdr描述了段的信息。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line">bootmain(void) &#123;</div><div class="line">    ..........</div><div class="line">    //首先判断是不是ELF</div><div class="line">    if (ELFHDR-&gt;e_magic != ELF_MAGIC) &#123;</div><div class="line">        goto bad;                 </div><div class="line">    &#125;</div><div class="line">    struct proghdr *ph, *eph;</div><div class="line"></div><div class="line">    //ELF头部有描述ELF文件应加载到内存什么位置的描述表，这里读取出来将之存入ph</div><div class="line">    ph = (struct proghdr *)((uintptr_t)ELFHDR + ELFHDR-&gt;e_phoff);</div><div class="line">    eph = ph + ELFHDR-&gt;e_phnum;</div><div class="line"></div><div class="line">    //按照程序头表的描述，将ELF文件中的数据载入内存</div><div class="line">    for (; ph &lt; eph; ph ++) &#123;</div><div class="line">        readseg(ph-&gt;p_va &amp; 0xFFFFFF, ph-&gt;p_memsz, ph-&gt;p_offset);</div><div class="line">    &#125;</div><div class="line">    //根据ELF头表中的入口信息，找到内核的入口并开始运行 </div><div class="line">    ((void (*)(void))(ELFHDR-&gt;e_entry &amp; 0xFFFFFF))();</div><div class="line">bad:</div><div class="line">    ..........</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>此时，控制权就交给了内存中的系统镜像。<br>由于操作系统学习还不够深入，所以此文中难免有遗漏之处，留待以后文章补充。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2017/04/27/详解BootLoader加载/" data-id="cj5jqnupk000ab0qub4gxg7bf" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-virtualbox虚拟ubuntu共享文件" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/04/25/virtualbox虚拟ubuntu共享文件/" class="article-date">
+  <time datetime="2017-04-25T08:37:51.000Z" itemprop="datePublished">2017-04-25</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/linux/">linux</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/04/25/virtualbox虚拟ubuntu共享文件/">virtualbox虚拟ubuntu共享文件</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>最近正在搭建一个小型操作系统内核，免不了要和Linux打交道。<br>我选择在windows虚拟机virtualbox上安装ubuntu14。<br>下面是实现共享文件的步骤。</p>
+<p>#1.安装增强包<br>进入ubuntu系统，点击顶部菜单-设备-安装增强功能，输入root密码后等待安装完成，重启虚拟机。</p>
+<p>#2.在windows和ubuntu中分别建立共享文件夹<br>我在windows下的共享文件夹为shareFolder，ubuntu下为share_windows。</p>
+<p>#3.在虚拟机上连接windows的共享文件夹<br>同样顶部菜单-设备-共享文件夹，选择在windows中建立好的共享文件夹，选固定分配。</p>
+<p>#4.在虚拟机上实现挂载<br>在ubuntu中进入终端，进行挂载：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">mount -t vboxsf shareFolder share_windows</div></pre></td></tr></table></figure>
+<p>重启后挂载消失，需要再次挂载。<br>如果想一劳永逸，可以设置自动挂载：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">vim /etc/fstab</div></pre></td></tr></table></figure>
+<p>在最后添加：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">shareFolder share_windows vboxsf rw,gid=110,uid=1100,auto 0 0</div></pre></td></tr></table></figure>
+<p>若想卸载自动挂载：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">umount -f share_windows</div></pre></td></tr></table></figure>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2017/04/25/virtualbox虚拟ubuntu共享文件/" data-id="cj5jqnupk0008b0quo99jx2l3" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-Hexo更换Maupassant主题" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/04/24/Hexo更换Maupassant主题/" class="article-date">
+  <time datetime="2017-04-24T03:40:32.000Z" itemprop="datePublished">2017-04-24</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/hexo/">hexo</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/04/24/Hexo更换Maupassant主题/">Hexo更换Maupassant主题</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>克隆主题到本地，安装渲染器：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$ git <span class="built_in">clone</span> https://github.com/tufu9441/maupassant-hexo.git themes/maupassant</div><div class="line">$ npm install hexo-renderer-jade --save</div><div class="line">$ npm install hexo-renderer-sass --save</div></pre></td></tr></table></figure>
+<p>如果sass安装失败，是因为代理的问题，要使用用cnpm镜像。<br>先删除原来的sass：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">npm uninstall  hexo-renderer-sass --save</div></pre></td></tr></table></figure>
+<p>安装cnpm的依赖：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ npm install -g cnpm --registry=https://registry.npm.taobao.org</div></pre></td></tr></table></figure>
+<p>重新安装sass：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ cnpm install hexo-renderer-sass --save</div></pre></td></tr></table></figure>
+<p>成功后进入hexo目录下的config文件，修改theme值为maupassant。</p>
+<p>添加disqus评论：<br>首先访问<a href="https://disqus.com注册账号，成功后在页面右上角设置里选Add" target="_blank" rel="external">https://disqus.com注册账号，成功后在页面右上角设置里选Add</a> Disqus To Site，填写相关信息后生成一个username，在maupasssant主题的config文件里找到disqus填入username，注意username的前后都有空格。</p>
+<p><code>hexo g</code>、<code>hexo d</code>提交页面。</p>
+<p>另外，创建关于页面需要在source下建立about文件夹，在文件夹内建立index.md。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2017/04/24/Hexo更换Maupassant主题/" data-id="cj5jqnuop0000b0qulann7uyr" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-ssh-connect-to-host-github-com-port-22-Connection-timed-out" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/04/24/ssh-connect-to-host-github-com-port-22-Connection-timed-out/" class="article-date">
+  <time datetime="2017-04-24T00:49:29.000Z" itemprop="datePublished">2017-04-24</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/hexo/">hexo</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/04/24/ssh-connect-to-host-github-com-port-22-Connection-timed-out/">ssh-connect to host github.com port 22-Connection timed out</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>在上传博客时报错如下：</p>
 <pre><code>ssh: connect to host github.com port 22: Connection timed out
-</code></pre><p>尝试安装最新版hexo、git、nodejs，重建博客，依然失败。<br>尝试普通的git操作，也无法完成，报错如下：</p></div><p class="readmore"><a href="/2017/04/24/ssh-connect-to-host-github-com-port-22-Connection-timed-out/">阅读更多</a></p></div><div class="post"><h1 class="post-title"><a href="/2015/12/03/xpath-wrong/">用xpath获取数据时出现Exception in thread &quot;main&quot; java.lang.NoClassDefFoundError</a></h1><div class="post-meta">2015-12-03</div><a data-disqus-identifier="2015/12/03/xpath-wrong/" href="/2015/12/03/xpath-wrong/#disqus_thread" class="disqus-comment-count"></a><div class="post-content"><p>在使用dom4j解析XML时，可以用xpath查找节点，从而读取数据：</p>
+</code></pre><p>尝试安装最新版hexo、git、nodejs，重建博客，依然失败。<br>尝试普通的git操作，也无法完成，报错如下：</p>
+<pre><code>Unknown SSL protocol error in connection to github.com:443
+</code></pre><p>在stackoverflow上给出的最佳答案是使用代理，可是我本身就在使用香港的代理，更换了美国的服务器后，依然报错，奇怪的是，github网站能够登陆，但是在cmd中github.com却ping不通。<br>继续google，原来gitbash本身需要代理。<br>所以更改host文件，首先右键-属性，给user最高权限，而后再文件末尾加上：</p>
+<pre><code>192.30.253.113 github.com
+192.30.252.131 github.com
+185.31.16.185 github.global.ssl.fastly.net
+74.125.237.1 dl-ssl.google.com
+173.194.127.200 groups.google.com
+192.30.252.131 github.com
+185.31.16.185 github.global.ssl.fastly.net
+74.125.128.95 ajax.googleapis.com
+</code></pre><p>一通代理，再次ping即可成功。<br>继续上传博客，提示无法用https提交。<br>尝试生成ssh秘钥：</p>
+<pre><code>ssh-keygen -t rsa
+</code></pre><p>在C:/Users/Administrator/.ssh下生成rsa和rsa-pub文件，拷贝pub中的秘钥到github的ssh中。<br>修改hexo根目录下config文件，修改deploy的repo中的https地址为git形式，可以在github博客repo中直接找到并切换这两个地址，复制过来：</p>
+<pre><code>deploy: 
+      type: git
+      repository: git@github.com:cwx2810/cwx2810.github.io.git
+     branch: master
+</code></pre><p>再尝试<code>hexo g</code>、<code>hexo d</code>，成功上传博客。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2017/04/24/ssh-connect-to-host-github-com-port-22-Connection-timed-out/" data-id="cj5jqnup40005b0qumioci32w" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-xpath-wrong" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2015/12/03/xpath-wrong/" class="article-date">
+  <time datetime="2015-12-03T08:18:42.000Z" itemprop="datePublished">2015-12-03</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/java/">java</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2015/12/03/xpath-wrong/">用xpath获取数据时出现Exception in thread &quot;main&quot; java.lang.NoClassDefFoundError</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>在使用dom4j解析XML时，可以用xpath查找节点，从而读取数据：</p>
 <pre><code>public User load(String username) {
-    String path = &quot;/users/user[username=&apos;&quot;+username+&quot;&apos;]&quot;;</div><p class="readmore"><a href="/2015/12/03/xpath-wrong/">阅读更多</a></p></div><div class="post"><h1 class="post-title"><a href="/2015/03/30/singal/">单例设计模式</a></h1><div class="post-meta">2015-03-30</div><a data-disqus-identifier="2015/03/30/singal/" href="/2015/03/30/singal/#disqus_thread" class="disqus-comment-count"></a><div class="post-content"><p>单例设计模式就是多个类要同时访问修改一个对象，就是说本来多个类修改同名对象做不到，因为只要一new就是一个新的对象，所以现在想只new一个对象所有类都能修改这一个对象，第一，本类new一个对象并提供能让其他类访问的方式，第二，不让别的类new这个对象时new出新对象，那么new对象必须要初始化，初始化必须要构造函数，那就把构造函数私有化，这样就new不了对象了。</p></div><p class="readmore"><a href="/2015/03/30/singal/">阅读更多</a></p></div><div class="post"><h1 class="post-title"><a href="/2015/03/22/hello-world/">搭建hexo博客</a></h1><div class="post-meta">2015-03-22</div><a data-disqus-identifier="2015/03/22/hello-world/" href="/2015/03/22/hello-world/#disqus_thread" class="disqus-comment-count"></a><div class="post-content"><h2 id="搭建前的准备工作"><a href="#搭建前的准备工作" class="headerlink" title="搭建前的准备工作"></a>搭建前的准备工作</h2><h3 id="1-安装git-for-windows"><a href="#1-安装git-for-windows" class="headerlink" title="1.安装git for windows"></a>1.安装git for windows</h3><p>git是基础，关于博客所有的操作都基于git bash</p>
+    String path = &quot;/users/user[username=&apos;&quot;+username+&quot;&apos;]&quot;;
+    Element e = (Element)ud.selectSingleNode(path);
+    if(e==null) return null;
+    User u = new User();
+    u.setNickname(e.elementText(&quot;nickname&quot;));
+    u.setPassword(e.elementText(&quot;password&quot;));
+    u.setUsername(e.elementText(&quot;username&quot;));
+    return u;
+}
+</code></pre><p>然而当我<code>testLoad();</code>后，竟然出现错误：</p>
+<pre><code>Exception in thread &quot;main&quot; java.lang.NoClassDefFoundError
+</code></pre><p>原来我只是导入了dom4j-1.6.1,jar，而其实dom4j有个压缩文件dom4j.zip，其中有doc和n多个包。</p>
+<p>将这些包都导入后，成功读取！</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2015/12/03/xpath-wrong/" data-id="cj5jqnupk0006b0qun76cdrmj" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-singal" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2015/03/30/singal/" class="article-date">
+  <time datetime="2015-03-30T05:03:22.000Z" itemprop="datePublished">2015-03-30</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/java/">java</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2015/03/30/singal/">单例设计模式</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>单例设计模式就是多个类要同时访问修改一个对象，就是说本来多个类修改同名对象做不到，因为只要一new就是一个新的对象，所以现在想只new一个对象所有类都能修改这一个对象，第一，本类new一个对象并提供能让其他类访问的方式，第二，不让别的类new这个对象时new出新对象，那么new对象必须要初始化，初始化必须要构造函数，那就把构造函数私有化，这样就new不了对象了。</p>
+<p>但是在本类中提供的访问函数别的类要调用又不能通过new对象，那就通过类调用，被类调用的必须是静态函数，静态函数只能访问（返回）静态成员，所以本类中new的对象所用的名称也就是地址值也必须是静态的在方法区。其他类调用本类提供的访问方式时把new改成类名.方法。</p>
+<p>但是地址值是静态的，调用的方法也是静态的，那为什么不直接调用地址值而要通过方法调用呢？因为调用方法是可控的，可以将地址值私有化，不对外开放，在方法里可以设置if等限制功能，方法public开放。</p>
+<p>单例里面还有一种方式，开始在本类里不new对象，即对象=null，而在方法里判断，如果对象为空，则new对象。这种方式叫懒汉式。上面那种常规方式，一上来就new好对象叫饿汉式。虽然懒汉式看起来晚加载，省内存，但是一般还得使用饿汉式，一是调用本类必然会调用对象，因为只有调用对象才能调用其他东西，二是我理解的，饿汉式更在思维上更简单正规。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2015/03/30/singal/" data-id="cj5jqnup40002b0qupygktevc" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-hello-world" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2015/03/22/hello-world/" class="article-date">
+  <time datetime="2015-03-22T10:40:29.000Z" itemprop="datePublished">2015-03-22</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/hexo/">hexo</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2015/03/22/hello-world/">搭建hexo博客</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="搭建前的准备工作"><a href="#搭建前的准备工作" class="headerlink" title="搭建前的准备工作"></a>搭建前的准备工作</h2><h3 id="1-安装git-for-windows"><a href="#1-安装git-for-windows" class="headerlink" title="1.安装git for windows"></a>1.安装git for windows</h3><p>git是基础，关于博客所有的操作都基于git bash</p>
 <h3 id="2-安装node-js"><a href="#2-安装node-js" class="headerlink" title="2.安装node.js"></a>2.安装node.js</h3><p>hexo博客基于node.js</p>
 <h3 id="3-安装markdown2"><a href="#3-安装markdown2" class="headerlink" title="3.安装markdown2"></a>3.安装markdown2</h3><p>markdown2可以方便的修改博客内容</p>
 <h3 id="4-安装sublimetext"><a href="#4-安装sublimetext" class="headerlink" title="4.安装sublimetext"></a>4.安装sublimetext</h3><p>sublimetext用于修改一些配置文件</p>
-<h3 id="5-创建github账号"><a href="#5-创建github账号" class="headerlink" title="5.创建github账号"></a>5.创建github账号</h3><p>有了github账号才能将博客发布到互联网</p></div><p class="readmore"><a href="/2015/03/22/hello-world/">阅读更多</a></p></div><script id="dsq-count-scr" src="//http-cwx2810-github-io.disqus.com/count.js" async></script></div></div><div class="pure-u-1-4 hidden_mid_and_down"><div id="sidebar"><div class="widget"><form action="//www.google.com/search" method="get" accept-charset="utf-8" target="_blank" class="search-form"><input type="text" name="q" maxlength="20" placeholder="Search"/><input type="hidden" name="sitesearch" value="http://yoursite.com"/></form></div><div class="widget"><div class="widget-title"><i class="fa fa-folder-o"> 分类</i></div><ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/hexo/">hexo</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/java/">java</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/linux/">linux</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/os/">os</a></li></ul></div><div class="widget"><div class="widget-title"><i class="fa fa-star-o"> 标签</i></div><div class="tagcloud"></div></div><div class="widget"><div class="widget-title"><i class="fa fa-file-o"> 最新文章</i></div><ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2017/04/27/详解BootLoader加载/">详解BootLoader加载</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/04/25/virtualbox虚拟ubuntu共享文件/">virtualbox虚拟ubuntu共享文件</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/04/24/Hexo更换Maupassant主题/">Hexo更换Maupassant主题</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/04/24/ssh-connect-to-host-github-com-port-22-Connection-timed-out/">ssh-connect to host github.com port 22-Connection timed out</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/12/03/xpath-wrong/">用xpath获取数据时出现Exception in thread "main" java.lang.NoClassDefFoundError</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/03/30/singal/">单例设计模式</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/03/22/hello-world/">搭建hexo博客</a></li></ul></div><div class="widget"><div class="widget-title"><i class="fa fa-comment-o"> 最近评论</i></div><script type="text/javascript" src="//http-cwx2810-github-io.disqus.com/recent_comments_widget.js?num_items=5&amp;hide_avatars=1&amp;avatar_size=32&amp;excerpt_length=20&amp;hide_mods=1"></script></div><div class="widget"><div class="widget-title"><i class="fa fa-external-link"> 友情链接</i></div><ul></ul><a href="https://www.haomwei.com/" title="屠夫9441的博客" target="_blank">屠夫9441的博客</a></div></div></div><div class="pure-u-1 pure-u-md-3-4"><div id="footer">© <a>2017 </a><a href="/." rel="nofollow">Cwx2810's blog.</a> Powered by<a rel="nofollow" target="_blank" href="https://hexo.io"> Hexo.</a><a rel="nofollow" target="_blank" href="https://github.com/tufu9441/maupassant-hexo"> Theme</a> by<a rel="nofollow" target="_blank" href="https://github.com/pagecho"> Cho.</a></div></div></div><a id="rocket" href="#top" class="show"></a><script type="text/javascript" src="/js/totop.js?v=0.0.0" async></script><script type="text/javascript" src="//cdn.bootcss.com/fancybox/3.0.47/jquery.fancybox.min.js" async></script><script type="text/javascript" src="/js/fancybox.js?v=0.0.0" async></script><link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/fancybox/3.0.47/jquery.fancybox.min.css"><script type="text/javascript" src="/js/codeblock-resizer.js?v=0.0.0"></script><script type="text/javascript" src="/js/smartresize.js?v=0.0.0"></script></div></body></html>
+<h3 id="5-创建github账号"><a href="#5-创建github账号" class="headerlink" title="5.创建github账号"></a>5.创建github账号</h3><p>有了github账号才能将博客发布到互联网</p>
+        
+          <p class="article-more-link">
+            <a href="/2015/03/22/hello-world/#more">Read More</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2015/03/22/hello-world/" data-id="cj5jqnup40004b0que7rvcmof" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/hexo/">hexo</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/java/">java</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/linux/">linux</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/os/">os</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/04/">April 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/12/">December 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/03/">March 2015</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2017/04/27/详解BootLoader加载/">详解BootLoader加载</a>
+          </li>
+        
+          <li>
+            <a href="/2017/04/25/virtualbox虚拟ubuntu共享文件/">virtualbox虚拟ubuntu共享文件</a>
+          </li>
+        
+          <li>
+            <a href="/2017/04/24/Hexo更换Maupassant主题/">Hexo更换Maupassant主题</a>
+          </li>
+        
+          <li>
+            <a href="/2017/04/24/ssh-connect-to-host-github-com-port-22-Connection-timed-out/">ssh-connect to host github.com port 22-Connection timed out</a>
+          </li>
+        
+          <li>
+            <a href="/2015/12/03/xpath-wrong/">用xpath获取数据时出现Exception in thread &quot;main&quot; java.lang.NoClassDefFoundError</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2017 cwx2810<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+  </div>
+</body>
+</html>
