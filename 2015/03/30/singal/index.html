@@ -2,7 +2,7 @@
 <p>但是在本类中提供的访问函数别的类要调用又不能通过new对象，那就通过类调用，被类调用的必须是静态函数，静态函数只能访问（返回）静态成员，所以本类中new的对象所用的名称也就是地址值也必须是静态的在方法区。其他类调用本类提供的访问方式时把new改成类名.方法。</p>
 <p>但是地址值是静态的，调用的方法也是静态的，那为什么不直接调用地址值而要通过方法调用呢？因为调用方法是可控的，可以将地址值私有化，不对外开放，在方法里可以设置if等限制功能，方法public开放。</p>
 <p>单例里面还有一种方式，开始在本类里不new对象，即对象=null，而在方法里判断，如果对象为空，则new对象。这种方式叫懒汉式。上面那种常规方式，一上来就new好对象叫饿汉式。虽然懒汉式看起来晚加载，省内存，但是一般还得使用饿汉式，一是调用本类必然会调用对象，因为只有调用对象才能调用其他东西，二是我理解的，饿汉式更在思维上更简单正规。</p>
-</div><script type="text/javascript" src="/js/share.js?v=0.0.0" async></script><a data-url="http://yoursite.com/2015/03/30/singal/" data-id="cj5jqegc300048wquktdqbr8e" class="article-share-link">分享到</a><div class="tags"></div><div class="post-nav"><a href="/2015/12/03/xpath-wrong/" class="pre">用xpath获取数据时出现Exception in thread &quot;main&quot; java.lang.NoClassDefFoundError</a><a href="/2015/03/22/hello-world/" class="next">搭建hexo博客</a></div><div id="disqus_thread"><script>var disqus_shortname = 'http-cwx2810-github-io';
+</div><script type="text/javascript" src="/js/share.js?v=0.0.0" async></script><a data-url="http://yoursite.com/2015/03/30/singal/" data-id="cj5jqkc3i0004agqug4xczzi3" class="article-share-link">分享到</a><div class="tags"></div><div class="post-nav"><a href="/2015/12/03/xpath-wrong/" class="pre">用xpath获取数据时出现Exception in thread &quot;main&quot; java.lang.NoClassDefFoundError</a><a href="/2015/03/22/hello-world/" class="next">搭建hexo博客</a></div><div id="disqus_thread"><script>var disqus_shortname = 'http-cwx2810-github-io';
 var disqus_identifier = '2015/03/30/singal/';
 var disqus_title = '单例设计模式';
 var disqus_url = 'http://yoursite.com/2015/03/30/singal/';
