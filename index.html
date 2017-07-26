@@ -87,7 +87,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h3 id="1-本地git命令"><a href="#1-本地git命令" class="headerlink" title="1.本地git命令"></a>1.本地git命令</h3><p>git有三种状态，工作区、暂存区、仓库，工作区有当前正在修改的文件，执行了add操作会添加到暂存区，执行commit操作会提交到仓库。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git init</div></pre></td></tr></table></figure></p>
+        <h2 id="1-本地git命令"><a href="#1-本地git命令" class="headerlink" title="1.本地git命令"></a>1.本地git命令</h2><p>git有三种状态，工作区、暂存区、仓库，工作区有当前正在修改的文件，执行了add操作会添加到暂存区，执行commit操作会提交到仓库。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git init</div></pre></td></tr></table></figure></p>
 <p>初始化一个文件夹为git仓库。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git status</div></pre></td></tr></table></figure></p>
 <p>查看当前提交状态。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git checkout a.md</div></pre></td></tr></table></figure></p>
 <p>还没有add时，切换到原文件名可以直接恢复原来的文件。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git add .</div></pre></td></tr></table></figure></p>
@@ -100,7 +100,7 @@
 <p>切换到新建的a分支，即新建和切换一步完成。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git merge a</div></pre></td></tr></table></figure></p>
 <p>合并a分支到此时所在的分支上。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git branch -d a</div></pre></td></tr></table></figure></p>
 <p>删除已经合并过的没用了的分支，如果还没有合并，要强行删除，则把小d改成大D即可。</p>
-<h3 id="2-远程github命令"><a href="#2-远程github命令" class="headerlink" title="2.远程github命令"></a>2.远程github命令</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">ssh -keygen -t rsa</div></pre></td></tr></table></figure>
+<h2 id="2-远程github命令"><a href="#2-远程github命令" class="headerlink" title="2.远程github命令"></a>2.远程github命令</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">ssh -keygen -t rsa</div></pre></td></tr></table></figure>
 <p>首先生成秘钥，翻译为ssh秘钥指定以rsa算法生成，连续敲三下回车，而后在c盘下找到pub秘钥添加到github上。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">ssh -T git@github.com</div></pre></td></tr></table></figure></p>
 <p>查看是否联通了github，如果失败，多半是没有设置代理，具体添加哪些host在之前文章有所提及。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">git config —-global user.name &quot;cwx2810&quot;</div><div class="line">git config —-global user.email &quot;cwx2810@163.com&quot;</div></pre></td></tr></table></figure></p>
 <p>在本地设置自己的用户名与邮箱，要和github上的一致，这些会出现在每次的提交记录里。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git clone git@github.com:cwx2810/xxx.git</div></pre></td></tr></table></figure></p>
@@ -108,13 +108,13 @@
 <p>若是本地先有的项目，那就麻烦一点，首先在github上新建一个空仓库，然后执行上面的代码，意思是远程添加名叫origin的仓库到xxx。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git push origin master</div></pre></td></tr></table></figure></p>
 <p>仓库建好就可以写代码了，在本地add和commit到本地仓库后，推origin到远程主分支，origin只是代表仓库名字。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git pull origin master</div></pre></td></tr></table></figure></p>
 <p>拉origin到本地主分支。</p>
-<h3 id="3-进阶github命令"><a href="#3-进阶github命令" class="headerlink" title="3.进阶github命令"></a>3.进阶github命令</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git diff</div></pre></td></tr></table></figure>
+<h2 id="3-进阶github命令"><a href="#3-进阶github命令" class="headerlink" title="3.进阶github命令"></a>3.进阶github命令</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git diff</div></pre></td></tr></table></figure>
 <p>比较工作区和暂存区的代码。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git diff --cache</div></pre></td></tr></table></figure></p>
 <p>比较暂存区和本地仓库的代码。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git diff HEAD</div></pre></td></tr></table></figure></p>
 <p>比较工作区和本地仓库的代码。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git stash</div></pre></td></tr></table></figure></p>
 <p>只要还没有commit到仓库的代码，都能进行隐藏，因为有时代码写到一半，还不宜提交，但是有别的分支的紧急bug要处理，就要用到这个，把当前状态挂起，处理完bug，再<code>git stash apply</code>恢复。<code>git stash list</code>显示所有挂起的记录，<code>git stash drop</code>删除最近一条挂起记录，<code>git stash pop</code>直接弹出，就是不仅恢复代码，同时删除最近一条记录，<code>git stash clear</code>清空所有挂起记录。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git rebase</div></pre></td></tr></table></figure></p>
 <p>和merge异曲同工，只不过merge是把其他分支的代码按照后来的顺序合并到主分支，rebase是把其他分支的代码和主分支柔和，按照所有人提交的时间顺序合并。在团队开发中常用merge，因为可以知道哪些提交是来自哪里，区分度好。</p>
-<h3 id="4-分支操作"><a href="#4-分支操作" class="headerlink" title="4.分支操作"></a>4.分支操作</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git push origin develop</div></pre></td></tr></table></figure>
+<h2 id="4-分支操作"><a href="#4-分支操作" class="headerlink" title="4.分支操作"></a>4.分支操作</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git push origin develop</div></pre></td></tr></table></figure>
 <p>把本地develop分支推送到远程origin仓库。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git branch -r</div></pre></td></tr></table></figure></p>
 <p>查看远程分支。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git push origin :develop</div></pre></td></tr></table></figure></p>
 <p>删除远程分支，<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git checkout develop origin/develop</div></pre></td></tr></table></figure></p>
@@ -123,7 +123,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/07/26/git常用命令解读/" data-id="cj5l8p3ug00020kqu1tbsdll6" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2017/07/26/git常用命令解读/" data-id="cj5l8utje0002q0quo7m2hphx" class="article-share-link">Share</a>
       
       
     </footer>
@@ -173,7 +173,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/07/25/重装系统后重新连接github搭建hexo博客/" data-id="cj5l8p3v5000d0kqurceedmce" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2017/07/25/重装系统后重新连接github搭建hexo博客/" data-id="cj5l8utk6000fq0quuvi27utx" class="article-share-link">Share</a>
       
       
     </footer>
@@ -239,7 +239,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/04/27/详解BootLoader加载/" data-id="cj5l8p3v4000a0kqu56xk6lph" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2017/04/27/详解BootLoader加载/" data-id="cj5l8utk5000dq0qutv842fqq" class="article-share-link">Share</a>
       
       
     </footer>
@@ -290,7 +290,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/04/25/virtualbox虚拟ubuntu共享文件/" data-id="cj5l8p3uw00060kqu797m5ipn" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2017/04/25/virtualbox虚拟ubuntu共享文件/" data-id="cj5l8utjx0008q0qumdwu1k5h" class="article-share-link">Share</a>
       
       
     </footer>
@@ -342,7 +342,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/04/24/Hexo更换Maupassant主题/" data-id="cj5l8p3u800000kqu6t403lu2" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2017/04/24/Hexo更换Maupassant主题/" data-id="cj5l8utj70000q0qudjjne2g6" class="article-share-link">Share</a>
       
       
     </footer>
@@ -403,7 +403,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/04/24/ssh-connect-to-host-github-com-port-22-Connection-timed-out/" data-id="cj5l8p3v7000f0kqup8khn480" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2017/04/24/ssh-connect-to-host-github-com-port-22-Connection-timed-out/" data-id="cj5l8utju0006q0quj03m37nq" class="article-share-link">Share</a>
       
       
     </footer>
@@ -458,7 +458,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2015/12/03/xpath-wrong/" data-id="cj5l8p3uz00080kqut14p6n4c" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2015/12/03/xpath-wrong/" data-id="cj5l8utk2000aq0qu9vfhgupi" class="article-share-link">Share</a>
       
       
     </footer>
@@ -502,7 +502,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2015/03/30/singal/" data-id="cj5l8p3uq00040kqu5uvzuaht" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2015/03/30/singal/" data-id="cj5l8utjr0005q0qu73yt7qbp" class="article-share-link">Share</a>
       
       
     </footer>
@@ -551,7 +551,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2015/03/22/hello-world/" data-id="cj5l8p3uu00050kquv1sx6l2y" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2015/03/22/hello-world/" data-id="cj5l8utjn0004q0quxsfn600r" class="article-share-link">Share</a>
       
       
     </footer>
